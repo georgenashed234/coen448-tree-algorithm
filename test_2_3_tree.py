@@ -53,6 +53,21 @@ def test_put_multiple_and_get_all_keys():
     # Non-existent key
     assert tree.get(40) is None
 
+def test_put_multiple_and_get_all_keys_v2():
+    mod = _load_two_three_tree_module()
+    TwoThreeTree = mod.TwoThreeTree
+
+    tree = TwoThreeTree()
+    # Insert keys in an order likely to force promotions into internal nodes
+    keys = [8, 4, 3, 11, 16, 12, 10, 19, 15, 13]
+    for k in keys:
+        tree.put(k, f"val{k}")
+
+    # Verify every inserted key can be retrieved
+    for k in keys:
+        assert tree.get(k) == f"val{k}", f"expected key {k} to return {v}"
+
+
 def test_get_internal_node_key():
     mod = _load_two_three_tree_module()
     TwoThreeTree = mod.TwoThreeTree
