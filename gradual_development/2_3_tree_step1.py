@@ -1,34 +1,13 @@
-# ...existing code...
-class Node:
-    def __init__(self, keys=None, vals=None, children=None):
-        self.keys = list(keys) if keys else []
-        self.vals = list(vals) if vals else []
-        self.children = list(children) if children else []
+import importlib.util
+import os
 
-    def is_leaf(self):
-        return len(self.children) == 0
-
-    def __repr__(self):
-        return f"Node(keys={self.keys})"
-
-
-class TwoThreeTree:
-    def __init__(self):
-        self.root = None
-
-    def get(self, key):
-        return self._get(self.root, key)
-
-    def _get(self, node, key):
-        if node is None:
-            return None
-        # scan through keys
-        for i, k in enumerate(node.keys):
-            if key == k:
-                return node.vals[i]
-            if key < k:
-                return self._get(node.children[i] if not node.is_leaf() else None, key)
-        return self._get(node.children[-1] if not node.is_leaf() else None, key)
+# Load the module from the repo root
+repo_root = os.path.dirname(os.path.abspath(__file__))
+module_path = os.path.join(repo_root, "..", "2_3_tree.py")
+spec = importlib.util.spec_from_file_location("two_three_tree", module_path)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+TwoThreeTree = module.TwoThreeTree
 
 
 def test_get_on_empty_tree():
