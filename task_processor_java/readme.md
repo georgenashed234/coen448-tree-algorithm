@@ -2,9 +2,6 @@
 ## Phase 1: Vibe Coding the Java Program
 
 ### The Development Prompt
-Instead of worrying about synchronized blocks or Volatile variables right away, we describe the energy of the system.
-
-### Prompt:
 
 "I want to create a Java TaskProcessor in maven project to support multitasking It should have a worker pool that takes tasks (represented as name as Strings and task as Runnables) and processes them concurrently. It needs to be thread-safe but it shouldn't block the main thread when adding tasks. Use modern Java libraries (like ExecutorService) and keep the API super clean. Add logging by some 'check' print statements so I can see the threads working in harmony."
 
